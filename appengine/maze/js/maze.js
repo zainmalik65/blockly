@@ -60,10 +60,10 @@ Maze.SKINS = [
   // crashSound: List of sounds (in various formats) for player crashes.
   // crashType: Behaviour when player crashes (stop, spin, or fall).
   {
-    sprite: 'maze/pegman.png',
-    tiles: 'maze/tiles_pegman.png',
-    marker: 'maze/marker.png',
-    background: false,
+    sprite: 'maze/avatar.png',
+    tiles: 'maze/tiles.png',
+    marker: 'maze/goalIdle.png',
+    background: 'maze/background.png',
     look: '#000',
     winSound: ['maze/win.mp3', 'maze/win.ogg'],
     crashSound: ['maze/fail_pegman.mp3', 'maze/fail_pegman.ogg'],
@@ -942,11 +942,13 @@ Maze.initInterpreter = function(interpreter, globalObject) {
       interpreter.createNativeFunction(wrapper));
   wrapper = function(id) {
     Maze.turn(0, id);
+    Maze.move(0, id);
   };
   interpreter.setProperty(globalObject, 'turnLeft',
       interpreter.createNativeFunction(wrapper));
   wrapper = function(id) {
     Maze.turn(1, id);
+    Maze.move(0, id);
   };
   interpreter.setProperty(globalObject, 'turnRight',
       interpreter.createNativeFunction(wrapper));
